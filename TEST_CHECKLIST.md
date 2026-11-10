@@ -89,14 +89,14 @@ npm test       # 터미널 2: 자동 테스트
 
 ```bash
 git init
-git add .gitignore package.json package-lock.json server.js test.js README.md report.md TEST_CHECKLIST.md
+git add .gitignore package.json package-lock.json server.js test.js README.md TEST_CHECKLIST.md docs/
 git status          # node_modules가 목록에 없는지 확인
 git commit -m "9주차: 검색·정렬·페이지네이션 게시판 + 자동 테스트/보고서"
 git remote add origin <GitHub 저장소 URL>
 git push -u origin main
 ```
 
-커밋 대상 7개 파일: `.gitignore`, `package.json`, `package-lock.json`, `server.js`, `test.js`, `README.md`, `report.md`, `TEST_CHECKLIST.md` *(스크린샷을 찍었다면 `screenshots/` 폴더도 추가)*.
+커밋 대상: `.gitignore`, `package.json`, `package-lock.json`, `server.js`, `test.js`, `README.md`, `TEST_CHECKLIST.md`, `docs/`. **`report.md`는 학번·이름이 포함되어 저장소에 올리지 않고 로컬에만 보관합니다(`.gitignore` 등록).**
 
 ## 4. 최종 제출 감사 (Submission Audit)
 

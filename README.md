@@ -26,7 +26,7 @@ npm test             # (서버 실행 상태에서) API 자동 회귀 테스트 
 |---|---|
 | `server.js` | Express 서버 + API 2종 + SPA 화면(단일 파일) |
 | `test.js` | 의존성 없는 API 자동 테스트 (Node 18+ 전역 fetch) |
-| `report.md` | 실습 보고서: 테스트 매트릭스·수정 내역·개념 설명·AI 활용 공개 |
+| `report.md` | 실습 보고서 — **로컬 보관(저장소 비포함)**. 테스트 매트릭스·수정 내역·개념 설명·AI 활용 공개 |
 | `TEST_CHECKLIST.md` | 테스트 증빙 및 브라우저 검증 결과·재현 절차 |
 | `docs/screenshots/` | 테스트 캡처 ①~⑨ (실제 Chrome 구동 촬영) |
 | `docs/test-output.txt` | `node test.js` 원본 출력 (36/36 PASS) |
