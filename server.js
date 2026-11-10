@@ -42,7 +42,9 @@ const POSTS = Array.from({ length: 1000 }, (_, i) => {
       place + "에서 " + menu + "을(를) 먹었습니다. " +
       "웨이팅, 가격, 맛 평가를 기록한 " + id + "번째 후기입니다.",
     author: AUTHORS[i % AUTHORS.length],
-    views: ((id * 37) % 4800) + 12,
+    // 조회수는 일부러 좁은 범위(12~311)로 생성해 '동점'이 다수 발생하게 한다.
+    // → views 정렬의 id DESC 2차 정렬이 실제로 동작하는지 검증할 수 있다.
+    views: ((id * 37) % 300) + 12,
     createdAt:
       "2026-" +
       String(10 - Math.floor(i / 150)).padStart(2, "0") +
@@ -433,6 +435,10 @@ const PAGE = `<!doctype html>
     var params = new URLSearchParams(location.search);
     var p = parseInt(params.get("page"), 10);
     state.page = Number.isInteger(p) && p > 0 ? p : 1;
+    // limit도 주소창에서 복원한다(서버와 같은 1~100 규칙). 쓰기만 하고 읽지 않으면
+    // ?limit=50 으로 들어왔을 때 요청은 10으로 나가 URL과 화면이 어긋난다.
+    var l = parseInt(params.get("limit"), 10);
+    state.limit = Number.isInteger(l) && l > 0 ? Math.min(l, 100) : 10;
     state.sort = ["latest", "views", "oldest"].indexOf(params.get("sort")) >= 0
       ? params.get("sort") : "latest";
     state.search = params.get("search") || "";

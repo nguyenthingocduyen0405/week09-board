@@ -60,12 +60,17 @@ async function main() {
   {
     const { body } = await get("/api/posts?sort=views&limit=100");
     let ok = true;
+    let tiePairs = 0; // 실제로 동점이 발생했는지 세어, 테스트가 공허하게 통과하는 것을 막는다
     for (let i = 1; i < body.items.length; i++) {
       const a = body.items[i - 1], b = body.items[i];
       if (a.views < b.views) ok = false;
-      if (a.views === b.views && a.id < b.id) ok = false; // 동점 시 id DESC
+      if (a.views === b.views) {
+        tiePairs++;
+        if (a.id < b.id) ok = false; // 동점 시 id DESC
+      }
     }
-    check("정렬: views 내림차순 + 동점 시 id DESC 2차 정렬", ok);
+    check("정렬: views 내림차순 + 동점 시 id DESC 2차 정렬 (동점 표본 존재)",
+      ok && tiePairs > 0, "동점 쌍=" + tiePairs);
   }
   for (const bad of ["constructor", "prototype", "toString", "__proto__", "hasOwnProperty", "views1", ""]) {
     const { body } = await get("/api/posts?sort=" + encodeURIComponent(bad) + "&limit=3");
