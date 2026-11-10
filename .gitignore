@@ -3,3 +3,6 @@ package-lock.json.bak
 *.log
 .DS_Store
 Thumbs.db
+
+# 실습 보고서는 로컬 보관 (학번·이름 포함, 저장소에 올리지 않음)
+report.md
